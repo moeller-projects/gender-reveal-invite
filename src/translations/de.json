@@ -1,0 +1,61 @@
+{
+  "title": "Gender-Reveal Einladung",
+  "subtitle": "Wir freuen uns, mit dir zu feiern!",
+  "event": {
+    "when": "Wann",
+    "where": "Wo",
+    "details": "Details",
+    "when_value": "Samstag, 17 Uhr",
+    "where_value": "Bei uns",
+    "details_value": "Lockeres Beisammensein mit Snacks und Getränken.",
+    "dresscode": "Dresscode",
+    "dresscode_value": "Smart Casual"
+  },
+  "form": {
+    "heading": "Rückmeldung (RSVP)",
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "totalPersons": "Anzahl Personen",
+    "dietary": "Besondere Essenswünsche",
+    "rsvp": "Kommst du?",
+    "rsvp_yes": "Ja",
+    "rsvp_no": "Nein",
+    "needsCouch": "Ich brauche eine Couch zum Übernachten",
+    "message": "Nachricht (optional)",
+    "submit": "Antwort senden",
+    "submitting": "Senden…",
+    "success": "Danke! Deine Antwort wurde gespeichert.",
+    "error": "Entschuldigung, etwas ist schiefgelaufen. Bitte erneut versuchen.",
+    "honeypot": "Dieses Feld leer lassen",
+    "prefill_success": "Deine vorherige Rückmeldung wurde geladen."
+  },
+  "language": {
+    "label": "Sprache",
+    "en": "English",
+    "de": "Deutsch"
+  },
+  "hero": {
+    "intro": "Feiere mit uns diesen besonderen Moment, wenn wir das Geschlecht unseres Babys verraten.",
+    "image_alt": "Foto des Paars"
+  },
+  "countdown": {
+    "title": "Countdown",
+    "days": "Tage",
+    "hours": "Stunden",
+    "minutes": "Minuten",
+    "seconds": "Sekunden",
+    "placeholder": "Setze VITE_EVENT_DATETIME in .env, um den Countdown zu aktivieren."
+  },
+  "map": {
+    "title": "Ort",
+    "route_button": "Route in Maps öffnen"
+  },
+  "details": {
+    "calendar": "Zum Kalender hinzufügen",
+    "add_to_calendar": "Zum Kalender hinzufügen",
+    "registry": "Geschenkideen",
+    "open_registry": "Geschenkliste öffnen",
+    "no_registry": "Keine Geschenkliste hinterlegt"
+  }
+}

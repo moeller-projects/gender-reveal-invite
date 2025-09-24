@@ -1,0 +1,61 @@
+{
+  "title": "Gender Reveal Invitation",
+  "subtitle": "We’re excited to celebrate with you!",
+  "event": {
+    "when": "When",
+    "where": "Where",
+    "details": "Details",
+    "when_value": "Saturday, 5 PM",
+    "where_value": "Our place",
+    "details_value": "Casual gathering with snacks and drinks.",
+    "dresscode": "Dress code",
+    "dresscode_value": "Smart casual"
+  },
+  "form": {
+    "heading": "RSVP",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "totalPersons": "Total persons",
+    "dietary": "Dietary needs",
+    "rsvp": "Will you attend?",
+    "rsvp_yes": "Yes",
+    "rsvp_no": "No",
+    "needsCouch": "I need a couch to stay overnight",
+    "message": "Message (optional)",
+    "submit": "Send RSVP",
+    "submitting": "Submitting…",
+    "success": "Thanks! Your response was recorded.",
+    "error": "Sorry, something went wrong. Please try again.",
+    "honeypot": "Leave this field empty",
+    "prefill_success": "Loaded your previous response."
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "de": "Deutsch"
+  },
+  "hero": {
+    "intro": "Join us for a special moment as we reveal our baby’s gender and celebrate together.",
+    "image_alt": "Couple photo"
+  },
+  "countdown": {
+    "title": "Countdown",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "placeholder": "Set VITE_EVENT_DATETIME in .env to enable the countdown."
+  },
+  "map": {
+    "title": "Location",
+    "route_button": "Open route in Maps"
+  },
+  "details": {
+    "calendar": "Add to calendar",
+    "add_to_calendar": "Add to Calendar",
+    "registry": "Registry",
+    "open_registry": "Open registry",
+    "no_registry": "No registry link provided"
+  }
+}

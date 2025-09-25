@@ -1,16 +1,12 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { addMinutes, isValid, parseISO } from 'date-fns';
 
-function formatICSDate(d: Date) {
-  const pad = (n: number) => String(n).padStart(2, '0');
-  const yyyy = d.getUTCFullYear();
-  const mm = pad(d.getUTCMonth() + 1);
-  const dd = pad(d.getUTCDate());
-  const hh = pad(d.getUTCHours());
-  const mi = pad(d.getUTCMinutes());
-  const ss = pad(d.getUTCSeconds());
-  return `${yyyy}${mm}${dd}T${hh}${mi}${ss}Z`;
-}
+const formatICSDate = (date: Date) =>
+  date
+    .toISOString()
+    .replace(/[-:]/g, '')
+    .replace(/\.\d{3}Z$/, 'Z');
 
 export default function AddToCalendar() {
   const { t } = useTranslation();
@@ -25,9 +21,9 @@ export default function AddToCalendar() {
     if (!dtRaw) {
       return { href: '#', name: 'event.ics' };
     }
-    const start = new Date(dtRaw);
-    if (isNaN(start.getTime())) return { href: '#', name: 'event.ics' };
-    const end = new Date(start.getTime() + durationMin * 60 * 1000);
+    const start = parseISO(dtRaw);
+    if (!isValid(start)) return { href: '#', name: 'event.ics' };
+    const end = addMinutes(start, durationMin);
 
     const uid = `${start.getTime()}@gender-reveal-invite.local`;
     const ics = [
@@ -70,4 +66,3 @@ export default function AddToCalendar() {
     </a>
   );
 }
-

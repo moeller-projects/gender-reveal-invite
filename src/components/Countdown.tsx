@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { differenceInSeconds, isValid, parseISO } from 'date-fns';
 
 function getTimeParts(target: Date) {
-  const now = new Date().getTime();
-  const diff = Math.max(0, target.getTime() - now);
-  const seconds = Math.floor(diff / 1000);
+  const seconds = Math.max(0, differenceInSeconds(target, new Date()));
   const days = Math.floor(seconds / (3600 * 24));
   const hours = Math.floor((seconds % (3600 * 24)) / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
@@ -17,8 +16,8 @@ export default function Countdown() {
   const target = useMemo(() => {
     const raw = import.meta.env.VITE_EVENT_DATETIME as string | undefined;
     if (!raw) return null;
-    const d = new Date(raw);
-    return isNaN(d.getTime()) ? null : d;
+    const parsed = parseISO(raw);
+    return isValid(parsed) ? parsed : null;
   }, []);
 
   const [parts, setParts] = useState(() =>

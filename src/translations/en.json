@@ -1,32 +1,32 @@
 {
-  "title": "Gender Reveal Invitation",
-  "subtitle": "We’re excited to celebrate with you!",
+  "title": "Baby Reveal Celebration",
+  "subtitle": "You're invited to share this joyful milestone with us!",
   "event": {
     "when": "When",
     "where": "Where",
     "details": "Details",
-    "when_value": "Saturday, 5 PM",
-    "where_value": "Our place",
-    "details_value": "Casual gathering with snacks and drinks.",
+    "when_value": "Saturday at 5:00 PM - arrive a little early to mingle",
+    "where_value": "Our home in Austin - see the map for directions",
+    "details_value": "Backyard celebration with sweet bites, lawn games, and the big reveal after sunset.",
     "dresscode": "Dress code",
-    "dresscode_value": "Smart casual"
+    "dresscode_value": "Soft pastels or anything you feel great in"
   },
   "form": {
-    "heading": "RSVP",
-    "name": "Name",
+    "heading": "Let us know you're coming",
+    "name": "Full name",
     "email": "Email",
-    "phone": "Phone",
-    "totalPersons": "Total persons",
-    "dietary": "Dietary needs",
-    "rsvp": "Will you attend?",
-    "rsvp_yes": "Yes",
-    "rsvp_no": "No",
-    "needsCouch": "I need a couch to stay overnight",
-    "message": "Message (optional)",
-    "submit": "Send RSVP",
-    "submitting": "Submitting…",
-    "success": "Thanks! Your response was recorded.",
-    "error": "Sorry, something went wrong. Please try again.",
+    "phone": "Phone number",
+    "totalPersons": "How many are coming?",
+    "dietary": "Food allergies or cravings",
+    "rsvp": "Can you celebrate with us?",
+    "rsvp_yes": "We'll be there!",
+    "rsvp_no": "We'll cheer from afar",
+    "needsCouch": "Could we save you a couch for the night?",
+    "message": "Leave us a note (optional)",
+    "submit": "Send my RSVP",
+    "submitting": "Sending…",
+    "success": "Thank you! We can't wait to celebrate together.",
+    "error": "Oops, something went wrong. Please try again in a moment.",
     "honeypot": "Leave this field empty",
     "prefill_success": "Loaded your previous response."
   },
@@ -36,26 +36,26 @@
     "de": "Deutsch"
   },
   "hero": {
-    "intro": "Join us for a special moment as we reveal our baby’s gender and celebrate together.",
+    "intro": "Family and friends, join us for a cozy baby reveal filled with laughter, games, and lots of love.",
     "image_alt": "Couple photo"
   },
   "countdown": {
-    "title": "Countdown",
+    "title": "Countdown to Baby Joy",
     "days": "Days",
     "hours": "Hours",
     "minutes": "Minutes",
     "seconds": "Seconds",
-    "placeholder": "Set VITE_EVENT_DATETIME in .env to enable the countdown."
+    "placeholder": "Set VITE_EVENT_DATETIME in .env to show the countdown to the big reveal."
   },
   "map": {
-    "title": "Location",
-    "route_button": "Open route in Maps"
+    "title": "Party Location",
+    "route_button": "Open directions in Maps"
   },
   "details": {
-    "calendar": "Add to calendar",
-    "add_to_calendar": "Add to Calendar",
-    "registry": "Registry",
-    "open_registry": "Open registry",
-    "no_registry": "No registry link provided"
+    "calendar": "Save the date",
+    "add_to_calendar": "Add to your calendar",
+    "registry": "Gift ideas",
+    "open_registry": "Browse our baby wish list",
+    "no_registry": "No registry yet - your presence is the best present."
   }
 }

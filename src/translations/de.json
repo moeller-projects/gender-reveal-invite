@@ -1,32 +1,32 @@
 {
-  "title": "Gender-Reveal Einladung",
-  "subtitle": "Wir freuen uns, mit dir zu feiern!",
+  "title": "Babyparty & Gender-Reveal",
+  "subtitle": "Wir freuen uns darauf, diesen besonderen Moment mit euch zu teilen!",
   "event": {
     "when": "Wann",
     "where": "Wo",
     "details": "Details",
-    "when_value": "Samstag, 17 Uhr",
-    "where_value": "Bei uns",
-    "details_value": "Lockeres Beisammensein mit Snacks und Getränken.",
+    "when_value": "Samstag ab 17:00 Uhr - kommt gern etwas früher zum Anstoßen",
+    "where_value": "Bei uns zuhause in Köln - genaue Adresse in der Karte",
+    "details_value": "Gemütliche Gartenfeier mit süßen Leckereien, Spielen und dem großen Reveal bei Sonnenuntergang.",
     "dresscode": "Dresscode",
-    "dresscode_value": "Smart Casual"
+    "dresscode_value": "Pastelltöne oder einfach das, worin du dich wohlfühlst"
   },
   "form": {
-    "heading": "Rückmeldung (RSVP)",
-    "name": "Name",
+    "heading": "Sag uns, ob du dabei bist",
+    "name": "Vollständiger Name",
     "email": "E-Mail",
-    "phone": "Telefon",
-    "totalPersons": "Anzahl Personen",
-    "dietary": "Besondere Essenswünsche",
-    "rsvp": "Kommst du?",
-    "rsvp_yes": "Ja",
-    "rsvp_no": "Nein",
-    "needsCouch": "Ich brauche eine Couch zum Übernachten",
-    "message": "Nachricht (optional)",
-    "submit": "Antwort senden",
-    "submitting": "Senden…",
-    "success": "Danke! Deine Antwort wurde gespeichert.",
-    "error": "Entschuldigung, etwas ist schiefgelaufen. Bitte erneut versuchen.",
+    "phone": "Telefonnummer",
+    "totalPersons": "Wie viele kommen mit?",
+    "dietary": "Allergien oder besondere Wünsche",
+    "rsvp": "Kannst du mit uns feiern?",
+    "rsvp_yes": "Auf jeden Fall!",
+    "rsvp_no": "Ich bin im Herzen dabei",
+    "needsCouch": "Ich hätte gern eine Schlafcouch für die Nacht",
+    "message": "Nachricht an uns (optional)",
+    "submit": "Rückmeldung senden",
+    "submitting": "Wird gesendet…",
+    "success": "Danke! Wir freuen uns riesig auf dich.",
+    "error": "Oh nein, etwas ist schiefgelaufen. Versuch es gleich nochmal.",
     "honeypot": "Dieses Feld leer lassen",
     "prefill_success": "Deine vorherige Rückmeldung wurde geladen."
   },
@@ -36,26 +36,26 @@
     "de": "Deutsch"
   },
   "hero": {
-    "intro": "Feiere mit uns diesen besonderen Moment, wenn wir das Geschlecht unseres Babys verraten.",
+    "intro": "Liebe Familie, liebe Freund*innen: Feiert mit uns eine gemütliche Babyparty mit Spielen, Lachen und ganz viel Liebe.",
     "image_alt": "Foto des Paars"
   },
   "countdown": {
-    "title": "Countdown",
+    "title": "Countdown zur Babyparty",
     "days": "Tage",
     "hours": "Stunden",
     "minutes": "Minuten",
     "seconds": "Sekunden",
-    "placeholder": "Setze VITE_EVENT_DATETIME in .env, um den Countdown zu aktivieren."
+    "placeholder": "Setze VITE_EVENT_DATETIME in .env, damit der Countdown zum großen Reveal erscheint."
   },
   "map": {
-    "title": "Ort",
+    "title": "Feieradresse",
     "route_button": "Route in Maps öffnen"
   },
   "details": {
-    "calendar": "Zum Kalender hinzufügen",
-    "add_to_calendar": "Zum Kalender hinzufügen",
+    "calendar": "Termin speichern",
+    "add_to_calendar": "In deinen Kalender übernehmen",
     "registry": "Geschenkideen",
-    "open_registry": "Geschenkliste öffnen",
-    "no_registry": "Keine Geschenkliste hinterlegt"
+    "open_registry": "Unsere Wunschliste ansehen",
+    "no_registry": "Keine Geschenkliste - eure Anwesenheit ist das schönste Geschenk."
   }
 }

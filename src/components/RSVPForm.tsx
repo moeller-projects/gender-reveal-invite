@@ -43,7 +43,7 @@ export default function RSVPForm() {
         const ref = doc(collection(db, 'rsvps'), token);
         const snap = await getDoc(ref);
         if (snap.exists()) {
-          const d = snap.data() as any;
+        const d = snap.data() as Partial<RSVPData>;
           setForm((f) => ({
             ...f,
             name: d.name ?? '',

@@ -1,6 +1,10 @@
 {
   "title": "Baby Reveal Celebration",
   "subtitle": "You're invited to share this joyful milestone with us!",
+  "nav": {
+    "home": "Invite",
+    "wishlist": "Wishlist"
+  },
   "event": {
     "when": "When",
     "where": "Where",
@@ -57,5 +61,76 @@
     "registry": "Gift ideas",
     "open_registry": "Browse our baby wish list",
     "no_registry": "No registry yet - your presence is the best present."
+  },
+  "wishlist": {
+    "title": "Wishlist",
+    "description": "Pick something you'd love to bring. Items stay reserved for a short grace period so everyone can coordinate.",
+    "loading": "Loading wishlist…",
+    "empty": "The wishlist is still empty for now.",
+    "available_section": "Still available",
+    "claimed_section": "Already reserved",
+    "claim": "Reserve this gift",
+    "claiming": "Reserving…",
+    "claim_success": "Thanks! We've held this item for you.",
+    "release": "Release my reservation",
+    "releasing": "Releasing…",
+    "release_success": "This gift is available again.",
+    "reserved": "Reserved",
+    "reserved_by_you": "Reserved by you",
+    "expired": "Reservation expired",
+    "share": "Share",
+    "share_copied": "Link copied — send it to someone you have in mind!",
+    "share_copy": "Share this link: {{url}}",
+    "share_error": "Couldn't share this item. Please try again soon.",
+    "error_generic": "Something went wrong. Refresh and try again?",
+    "error_already_claimed": "Someone else just reserved this item.",
+    "error_no_token": "We couldn't find your reservation token. Claim the gift again to take it.",
+    "error_not_allowed": "Looks like someone else has this reserved right now.",
+    "claim_timer": "Your hold expires in {{minutes}}:{{seconds}}"
+  },
+  "wishlistAdmin": {
+    "title": "Wishlist management",
+    "description": "Add, edit, or release gifts so everyone sees the latest availability.",
+    "missing_access_code": "Set VITE_ADMIN_ACCESS_CODE in your .env file to unlock the admin tools.",
+    "access_label": "Access code",
+    "access_submit": "Unlock admin view",
+    "error_no_code": "No access code configured yet.",
+    "error_invalid_code": "That code didn't match. Try again?",
+    "create_heading": "Add a wishlist item",
+    "items_heading": "Current wishlist",
+    "loading": "Loading wishlist…",
+    "empty": "No wishlist items yet.",
+    "error_generic": "Something went wrong. Please retry.",
+    "error_permission": "Firestore blocked that action. Check your security rules or admin access.",
+    "create_success": "Item created.",
+    "update_success": "Item updated.",
+    "delete_success": "Item deleted.",
+    "release_success": "Reservation released.",
+    "delete_confirm": "Remove this item from the wishlist?",
+    "form": {
+      "title": "Title",
+      "description": "Description",
+      "link": "Product link",
+      "imageUrl": "Image URL",
+      "priceRange": "Price range",
+      "category": "Category",
+      "save": "Save item",
+      "saving": "Saving…",
+      "reset": "Reset",
+      "cancel": "Cancel"
+    },
+    "validation": {
+      "required": "Please fill this field.",
+      "invalid_url": "Enter a valid URL."
+    },
+    "actions": {
+      "edit": "Edit",
+      "release": "Release",
+      "delete": "Delete"
+    },
+    "status": {
+      "claimed": "Reserved",
+      "expires": "Hold expires {{date}}"
+    }
   }
 }

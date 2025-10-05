@@ -1,6 +1,10 @@
 {
   "title": "Babyparty & Gender-Reveal",
   "subtitle": "Wir freuen uns darauf, diesen besonderen Moment mit euch zu teilen!",
+  "nav": {
+    "home": "Einladung",
+    "wishlist": "Wunschliste"
+  },
   "event": {
     "when": "Wann",
     "where": "Wo",
@@ -57,5 +61,76 @@
     "registry": "Geschenkideen",
     "open_registry": "Unsere Wunschliste ansehen",
     "no_registry": "Keine Geschenkliste - eure Anwesenheit ist das schönste Geschenk."
+  },
+  "wishlist": {
+    "title": "Wunschliste",
+    "description": "Such dir etwas aus, das du schenken möchtest. Reservierungen bleiben kurzzeitig bestehen, damit alle planen können.",
+    "loading": "Wunschliste wird geladen…",
+    "empty": "Noch keine Wünsche eingetragen.",
+    "available_section": "Noch frei",
+    "claimed_section": "Bereits reserviert",
+    "claim": "Ich bringe das mit",
+    "claiming": "Reserviere…",
+    "claim_success": "Danke! Wir halten den Wunsch kurz für dich frei.",
+    "release": "Reservierung aufheben",
+    "releasing": "Gebe frei…",
+    "release_success": "Der Wunsch ist wieder frei.",
+    "reserved": "Reserviert",
+    "reserved_by_you": "Von dir reserviert",
+    "expired": "Reservierung abgelaufen",
+    "share": "Teilen",
+    "share_copied": "Link kopiert – teile ihn gern weiter!",
+    "share_copy": "Teile diesen Link: {{url}}",
+    "share_error": "Das Teilen hat nicht geklappt. Versuch es später noch einmal.",
+    "error_generic": "Da ist etwas schiefgelaufen. Bitte aktualisiere die Seite.",
+    "error_already_claimed": "Jemand anders war schneller und hat den Wunsch reserviert.",
+    "error_no_token": "Deine Reservierung konnte nicht gefunden werden. Reserviere den Wunsch erneut.",
+    "error_not_allowed": "Dieser Wunsch ist aktuell von jemand anderem reserviert.",
+    "claim_timer": "Deine Reservierung läuft in {{minutes}}:{{seconds}} aus"
+  },
+  "wishlistAdmin": {
+    "title": "Wunschliste verwalten",
+    "description": "Füge neue Ideen hinzu, bearbeite sie oder gib Reservierungen frei.",
+    "missing_access_code": "Lege VITE_ADMIN_ACCESS_CODE in deiner .env-Datei fest, um die Admin-Tools zu nutzen.",
+    "access_label": "Zugangscode",
+    "access_submit": "Admin-Bereich öffnen",
+    "error_no_code": "Es ist noch kein Zugangscode hinterlegt.",
+    "error_invalid_code": "Der Code war nicht korrekt.",
+    "create_heading": "Neuen Wunsch anlegen",
+    "items_heading": "Aktuelle Wunschliste",
+    "loading": "Wunschliste wird geladen…",
+    "empty": "Es gibt noch keine Wünsche.",
+    "error_generic": "Etwas ist schiefgelaufen. Bitte versuch es erneut.",
+    "error_permission": "Firestore hat diese Aktion abgelehnt. Prüfe deine Sicherheitsregeln oder Admin-Berechtigungen.",
+    "create_success": "Wunsch wurde erstellt.",
+    "update_success": "Wunsch wurde aktualisiert.",
+    "delete_success": "Wunsch wurde gelöscht.",
+    "release_success": "Reservierung wurde aufgehoben.",
+    "delete_confirm": "Diesen Wunsch wirklich aus der Liste entfernen?",
+    "form": {
+      "title": "Titel",
+      "description": "Beschreibung",
+      "link": "Produktlink",
+      "imageUrl": "Bild-URL",
+      "priceRange": "Preisrahmen",
+      "category": "Kategorie",
+      "save": "Speichern",
+      "saving": "Speichere…",
+      "reset": "Zurücksetzen",
+      "cancel": "Abbrechen"
+    },
+    "validation": {
+      "required": "Bitte fülle dieses Feld aus.",
+      "invalid_url": "Bitte gib eine gültige URL ein."
+    },
+    "actions": {
+      "edit": "Bearbeiten",
+      "release": "Freigeben",
+      "delete": "Löschen"
+    },
+    "status": {
+      "claimed": "Reserviert",
+      "expires": "Reservierung endet am {{date}}"
+    }
   }
 }

@@ -24,7 +24,9 @@ VITE_FIREBASE_APP_ID=...
 VITE_FIREBASE_MEASUREMENT_ID=...
 ```
 
-3. Firestore collection: `rsvps` (documents will be created by the app).
+3. Firestore collections:
+   - `rsvps` (created automatically when guests submit the form)
+   - `wishlistItems` (created and managed through the wishlist admin page)
 
 ### Firestore security rules (write-only)
 
@@ -37,6 +39,10 @@ service cloud.firestore {
     match /rsvps/{docId} {
       allow create: if true; // open write
       allow read, update, delete: if false; // no reads or modifications
+    }
+    match /wishlistItems/{docId} {
+      allow read: if true; // wishlist is public
+      allow write: if request.auth != null && request.auth.token.admin == true;
     }
   }
 }
@@ -62,6 +68,10 @@ service cloud.firestore {
       allow create: if true; // open creation
       allow get, update: if true; // allow direct document read/update by ID
       allow list, delete: if false; // no listing or deletes
+    }
+    match /wishlistItems/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.admin == true;
     }
   }
 }
@@ -117,3 +127,15 @@ Basic validation uses zod. A hidden honeypot field reduces spam.
 
 - To display a registry link in the details section, set:
   - `VITE_REGISTRY_URL=https://...`
+
+## Wishlist
+
+- `/wishlist` shows every document in `wishlistItems`.
+- Guests can reserve an item; the reservation automatically expires after `VITE_WISHLIST_GRACE_MINUTES` minutes.
+- Share buttons use the Web Share API when available or copy a link fallback. Override the base with `VITE_WISHLIST_SHARE_BASE_URL` if the site is proxied.
+
+### Admin view
+
+- `/wishlist/admin` requires `VITE_ADMIN_ACCESS_CODE` to be set in `.env`.
+- Admins can create, edit, delete, or release wishlist entries. Blank optional fields clear the stored value.
+- Consider protecting writes via Firebase custom claims or a backend proxy for production deployments.

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import AddToCalendar from './AddToCalendar';
 
@@ -32,18 +33,26 @@ export default function DetailsSection() {
           </div>
           <div>
             <div className="text-sm text-neutral-500">{t('details.registry')}</div>
-            {registryUrl ? (
-              <a
-                href={registryUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="inline-flex items-center gap-2 text-neutral-900 underline underline-offset-4"
+            <div className="mt-2 flex flex-wrap items-center gap-3 text-sm">
+              {registryUrl ? (
+                <a
+                  href={registryUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="inline-flex items-center gap-2 text-neutral-900 underline underline-offset-4"
+                >
+                  {t('details.open_registry')}
+                </a>
+              ) : (
+                <span className="text-neutral-600">{t('details.no_registry')}</span>
+              )}
+              <Link
+                to="/wishlist"
+                className="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-3 py-1 text-xs font-medium text-neutral-700 transition-colors hover:bg-neutral-100"
               >
-                {t('details.open_registry')}
-              </a>
-            ) : (
-              <div className="text-neutral-600">{t('details.no_registry')}</div>
-            )}
+                {t('nav.wishlist')}
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -63,4 +72,3 @@ export default function DetailsSection() {
     </section>
   );
 }
-

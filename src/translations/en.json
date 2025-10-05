@@ -64,20 +64,19 @@
   },
   "wishlist": {
     "title": "Wishlist",
-    "description": "Pick something you'd love to bring. Items stay reserved for a short grace period so everyone can coordinate.",
+    "description": "Pick something you'd love to bring and mark it reserved so everyone can coordinate.",
     "loading": "Loading wishlist…",
     "empty": "The wishlist is still empty for now.",
     "available_section": "Still available",
     "claimed_section": "Already reserved",
     "claim": "Reserve this gift",
     "claiming": "Reserving…",
-    "claim_success": "Thanks! We've held this item for you.",
+    "claim_success": "Thanks! This gift is now reserved for you.",
     "release": "Release my reservation",
     "releasing": "Releasing…",
     "release_success": "This gift is available again.",
     "reserved": "Reserved",
     "reserved_by_you": "Reserved by you",
-    "expired": "Reservation expired",
     "share": "Share",
     "share_copied": "Link copied — send it to someone you have in mind!",
     "share_copy": "Share this link: {{url}}",
@@ -85,8 +84,7 @@
     "error_generic": "Something went wrong. Refresh and try again?",
     "error_already_claimed": "Someone else just reserved this item.",
     "error_no_token": "We couldn't find your reservation token. Claim the gift again to take it.",
-    "error_not_allowed": "Looks like someone else has this reserved right now.",
-    "claim_timer": "Your hold expires in {{minutes}}:{{seconds}}"
+    "error_not_allowed": "Looks like someone else has this reserved right now."
   },
   "wishlistAdmin": {
     "title": "Wishlist management",
@@ -129,8 +127,7 @@
       "delete": "Delete"
     },
     "status": {
-      "claimed": "Reserved",
-      "expires": "Hold expires {{date}}"
+      "claimed": "Reserved"
     }
   }
 }

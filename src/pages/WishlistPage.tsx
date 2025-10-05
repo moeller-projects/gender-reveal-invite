@@ -30,23 +30,11 @@ const readStoredTokens = (): TokenMap => {
   }
 };
 
-const getGraceMinutes = () => {
-  const raw = Number(import.meta.env.VITE_WISHLIST_GRACE_MINUTES ?? 30);
-  return Number.isFinite(raw) && raw > 0 ? Math.floor(raw) : 30;
-};
-
 const generateToken = () => {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) {
     return crypto.randomUUID();
   }
   return Math.random().toString(36).slice(2);
-};
-
-type EnrichedItem = {
-  item: WishlistItem;
-  expiresAtMs: number | null;
-  isExpired: boolean;
-  isClaimed: boolean;
 };
 
 export default function WishlistPage() {
@@ -96,48 +84,38 @@ export default function WishlistPage() {
     });
   }, []);
 
-  const enriched = useMemo(() => {
-    const now = Date.now();
-    return items.map((item) => {
-      const expiresAtMs = item.claimExpiresAt ? item.claimExpiresAt.toMillis() : null;
-      const isExpired = Boolean(item.isClaimed && expiresAtMs && expiresAtMs <= now);
-      const isClaimed = item.isClaimed && !isExpired;
-      return { item, expiresAtMs, isExpired, isClaimed } satisfies EnrichedItem;
-    });
-  }, [items]);
-
   const partitioned = useMemo(() => {
-    const available: EnrichedItem[] = [];
-    const claimed: EnrichedItem[] = [];
+    const available: WishlistItem[] = [];
+    const claimed: WishlistItem[] = [];
 
-    enriched.forEach((entry) => {
-      if (entry.isClaimed) {
-        claimed.push(entry);
+    items.forEach((item) => {
+      if (item.isClaimed) {
+        claimed.push(item);
       } else {
-        available.push(entry);
+        available.push(item);
       }
     });
 
-    const sortByTitle = (a: EnrichedItem, b: EnrichedItem) =>
-      a.item.title.localeCompare(b.item.title, undefined, { sensitivity: 'base' });
+    const sortByTitle = (a: WishlistItem, b: WishlistItem) =>
+      a.title.localeCompare(b.title, undefined, { sensitivity: 'base' });
 
     available.sort(sortByTitle);
     claimed.sort(sortByTitle);
 
     return { available, claimed };
-  }, [enriched]);
+  }, [items]);
 
   const showNotice = useCallback((type: Notice['type'], message: string) => {
     setNotice({ type, message });
   }, []);
 
   const handleClaim = useCallback(
-    async (entry: EnrichedItem) => {
-      const id = entry.item.id;
+    async (item: WishlistItem) => {
+      const id = item.id;
       setPendingActions((prev) => ({ ...prev, [id]: 'claim' }));
       const token = generateToken();
       try {
-        await claimWishlistItem({ id, token, graceMinutes: getGraceMinutes() });
+        await claimWishlistItem({ id, token });
         setToken(id, token);
         showNotice('success', t('wishlist.claim_success'));
       } catch (err) {
@@ -159,8 +137,8 @@ export default function WishlistPage() {
   );
 
   const handleRelease = useCallback(
-    async (entry: EnrichedItem) => {
-      const id = entry.item.id;
+    async (item: WishlistItem) => {
+      const id = item.id;
       const token = tokens[id];
       if (!token) {
         showNotice('error', t('wishlist.error_no_token'));
@@ -192,16 +170,16 @@ export default function WishlistPage() {
   );
 
   const handleShare = useCallback(
-    async (entry: EnrichedItem) => {
+    async (item: WishlistItem) => {
       if (typeof window === 'undefined') return;
       const base = (import.meta.env.VITE_WISHLIST_SHARE_BASE_URL as string | undefined) ?? window.location.origin;
-      const url = new URL(`/wishlist?item=${entry.item.id}`, base).toString();
+      const url = new URL(`/wishlist?item=${item.id}`, base).toString();
 
       try {
         if (typeof navigator !== 'undefined' && navigator.share) {
           await navigator.share({
-            title: entry.item.title,
-            text: entry.item.description ?? undefined,
+            title: item.title,
+            text: item.description ?? undefined,
             url,
           });
         } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
@@ -216,18 +194,6 @@ export default function WishlistPage() {
       }
     },
     [showNotice, t]
-  );
-
-  const countdownFormatter = useCallback(
-    (secondsRemaining: number) => {
-      const minutes = Math.floor(secondsRemaining / 60);
-      const seconds = secondsRemaining % 60;
-      return t('wishlist.claim_timer', {
-        minutes,
-        seconds: seconds.toString().padStart(2, '0'),
-      });
-    },
-    [t]
   );
 
   return (
@@ -273,17 +239,16 @@ export default function WishlistPage() {
         <section className="space-y-4">
           <h3 className="text-lg font-semibold text-neutral-900">{t('wishlist.available_section')}</h3>
           <div className="space-y-4">
-            {partitioned.available.map((entry) => (
+            {partitioned.available.map((item) => (
               <WishlistItemCard
-                key={entry.item.id}
-                item={entry.item}
-                isClaimed={entry.isClaimed}
-                isExpired={entry.isExpired}
-                isOwnClaim={Boolean(entry.item.claimToken && tokens[entry.item.id] === entry.item.claimToken)}
-                onClaim={() => handleClaim(entry)}
-                onRelease={() => handleRelease(entry)}
-                onShare={() => handleShare(entry)}
-                pendingAction={pendingActions[entry.item.id] ?? null}
+                key={item.id}
+                item={item}
+                isClaimed={item.isClaimed}
+                isOwnClaim={Boolean(item.claimToken && tokens[item.id] === item.claimToken)}
+                onClaim={() => handleClaim(item)}
+                onRelease={() => handleRelease(item)}
+                onShare={() => handleShare(item)}
+                pendingAction={pendingActions[item.id] ?? null}
                 shareLabel={t('wishlist.share')}
                 claimLabel={t('wishlist.claim')}
                 claimingLabel={t('wishlist.claiming')}
@@ -291,9 +256,6 @@ export default function WishlistPage() {
                 releasingLabel={t('wishlist.releasing')}
                 reservedLabel={t('wishlist.reserved')}
                 ownReservationLabel={t('wishlist.reserved_by_you')}
-                expiredLabel={t('wishlist.expired')}
-                countdownFormatter={countdownFormatter}
-                expiresAtMs={entry.expiresAtMs}
               />
             ))}
           </div>
@@ -304,17 +266,16 @@ export default function WishlistPage() {
         <section className="space-y-4">
           <h3 className="text-lg font-semibold text-neutral-900">{t('wishlist.claimed_section')}</h3>
           <div className="space-y-4">
-            {partitioned.claimed.map((entry) => (
+            {partitioned.claimed.map((item) => (
               <WishlistItemCard
-                key={entry.item.id}
-                item={entry.item}
-                isClaimed={entry.isClaimed}
-                isExpired={entry.isExpired}
-                isOwnClaim={Boolean(entry.item.claimToken && tokens[entry.item.id] === entry.item.claimToken)}
-                onClaim={() => handleClaim(entry)}
-                onRelease={() => handleRelease(entry)}
-                onShare={() => handleShare(entry)}
-                pendingAction={pendingActions[entry.item.id] ?? null}
+                key={item.id}
+                item={item}
+                isClaimed={item.isClaimed}
+                isOwnClaim={Boolean(item.claimToken && tokens[item.id] === item.claimToken)}
+                onClaim={() => handleClaim(item)}
+                onRelease={() => handleRelease(item)}
+                onShare={() => handleShare(item)}
+                pendingAction={pendingActions[item.id] ?? null}
                 shareLabel={t('wishlist.share')}
                 claimLabel={t('wishlist.claim')}
                 claimingLabel={t('wishlist.claiming')}
@@ -322,9 +283,6 @@ export default function WishlistPage() {
                 releasingLabel={t('wishlist.releasing')}
                 reservedLabel={t('wishlist.reserved')}
                 ownReservationLabel={t('wishlist.reserved_by_you')}
-                expiredLabel={t('wishlist.expired')}
-                countdownFormatter={countdownFormatter}
-                expiresAtMs={entry.expiresAtMs}
               />
             ))}
           </div>

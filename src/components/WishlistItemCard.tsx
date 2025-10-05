@@ -1,10 +1,8 @@
-import { useEffect, useMemo, useState } from 'react';
 import type { WishlistItem } from '../types';
 
 export type WishlistItemCardProps = {
   item: WishlistItem;
   isClaimed: boolean;
-  isExpired: boolean;
   isOwnClaim: boolean;
   onClaim: () => Promise<void>;
   onRelease: () => Promise<void>;
@@ -16,16 +14,12 @@ export type WishlistItemCardProps = {
   releasingLabel: string;
   reservedLabel: string;
   ownReservationLabel: string;
-  expiredLabel: string;
   pendingAction: 'claim' | 'release' | null;
-  countdownFormatter: (secondsRemaining: number) => string;
-  expiresAtMs: number | null;
 };
 
 export default function WishlistItemCard({
   item,
   isClaimed,
-  isExpired,
   isOwnClaim,
   onClaim,
   onRelease,
@@ -37,44 +31,10 @@ export default function WishlistItemCard({
   releasingLabel,
   reservedLabel,
   ownReservationLabel,
-  expiredLabel,
   pendingAction,
-  countdownFormatter,
-  expiresAtMs,
 }: WishlistItemCardProps) {
-  const [secondsRemaining, setSecondsRemaining] = useState(() => {
-    if (!expiresAtMs) return 0;
-    return Math.max(0, Math.floor((expiresAtMs - Date.now()) / 1000));
-  });
-
-  useEffect(() => {
-    if (!expiresAtMs) {
-      setSecondsRemaining(0);
-      return;
-    }
-
-    setSecondsRemaining(Math.max(0, Math.floor((expiresAtMs - Date.now()) / 1000)));
-
-    const id = window.setInterval(() => {
-      const next = Math.max(0, Math.floor((expiresAtMs - Date.now()) / 1000));
-      setSecondsRemaining(next);
-      if (next === 0) {
-        window.clearInterval(id);
-      }
-    }, 1000);
-
-    return () => {
-      window.clearInterval(id);
-    };
-  }, [expiresAtMs]);
-
-  const countdownLabel = useMemo(() => {
-    if (!expiresAtMs || secondsRemaining <= 0) return null;
-    return countdownFormatter(secondsRemaining);
-  }, [countdownFormatter, expiresAtMs, secondsRemaining]);
-
-  const showClaimButton = !isClaimed || isExpired;
-  const showReleaseButton = isClaimed && isOwnClaim && !isExpired;
+  const showClaimButton = !isClaimed;
+  const showReleaseButton = isClaimed && isOwnClaim;
 
   return (
     <article className="flex flex-col gap-4 rounded-lg border bg-white p-4 sm:p-5">
@@ -89,14 +49,9 @@ export default function WishlistItemCard({
             {item.category && (
               <span className="rounded bg-neutral-100 px-2 py-1 text-neutral-700">{item.category}</span>
             )}
-            {isClaimed && !isExpired && (
+            {isClaimed && (
               <span className="rounded border border-amber-300 bg-amber-50 px-2 py-1 text-amber-700">
                 {isOwnClaim ? ownReservationLabel : reservedLabel}
-              </span>
-            )}
-            {isExpired && (
-              <span className="rounded border border-neutral-300 bg-neutral-100 px-2 py-1 text-neutral-600">
-                {expiredLabel}
               </span>
             )}
           </div>
@@ -120,12 +75,6 @@ export default function WishlistItemCard({
           />
         )}
       </div>
-
-      {countdownLabel && (
-        <div className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-700">
-          {countdownLabel}
-        </div>
-      )}
 
       <div className="flex flex-wrap items-center gap-3">
         {showClaimButton && (

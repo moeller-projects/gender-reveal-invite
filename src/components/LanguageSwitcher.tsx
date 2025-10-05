@@ -1,30 +1,41 @@
 import { useTranslation } from 'react-i18next';
 
+const OPTIONS: Array<{ code: 'en' | 'de'; shortLabel: string }> = [
+  { code: 'en', shortLabel: 'EN' },
+  { code: 'de', shortLabel: 'DE' },
+];
+
 export default function LanguageSwitcher() {
   const { i18n, t } = useTranslation();
 
-  const change = (lng: 'en' | 'de') => {
-    i18n.changeLanguage(lng);
+  const handleChange = (lng: 'en' | 'de') => {
+    if (i18n.resolvedLanguage !== lng) {
+      i18n.changeLanguage(lng);
+    }
   };
 
   return (
-    <div className="flex items-center gap-2 text-sm">
-      <span className="text-neutral-500">{t('language.label')}:</span>
-      <button
-        type="button"
-        onClick={() => change('en')}
-        className={`px-2 py-1 rounded border ${i18n.resolvedLanguage === 'en' ? 'bg-neutral-900 text-white border-neutral-800' : 'border-neutral-300'}`}
-      >
-        {t('language.en')}
-      </button>
-      <button
-        type="button"
-        onClick={() => change('de')}
-        className={`px-2 py-1 rounded border ${i18n.resolvedLanguage === 'de' ? 'bg-neutral-900 text-white border-neutral-800' : 'border-neutral-300'}`}
-      >
-        {t('language.de')}
-      </button>
+    <div className="flex justify-end">
+      <div className="inline-flex overflow-hidden rounded-full border border-neutral-300 bg-white text-xs font-medium shadow-sm">
+        {OPTIONS.map(({ code, shortLabel }) => {
+          const isActive = i18n.resolvedLanguage === code;
+          return (
+            <button
+              key={code}
+              type="button"
+              onClick={() => handleChange(code)}
+              aria-label={t(`language.${code}`)}
+              className={`px-3 py-1 transition-colors ${
+                isActive
+                  ? 'bg-neutral-900 text-white'
+                  : 'text-neutral-600 hover:bg-neutral-100'
+              }`}
+            >
+              {shortLabel}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
-

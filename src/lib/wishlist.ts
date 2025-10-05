@@ -12,15 +12,11 @@ import {
   type QueryDocumentSnapshot,
   type UpdateData,
 } from 'firebase/firestore';
-import { addMinutes, isValid } from 'date-fns';
 import { db } from './firebase';
 import type { WishlistItem, WishlistItemInput, WishlistItemUpdate } from '../types';
 
 const COLLECTION_NAME = 'wishlistItems';
 const wishlistCollection = collection(db, COLLECTION_NAME);
-
-const graceMinutesEnv = Number(import.meta.env.VITE_WISHLIST_GRACE_MINUTES ?? 30);
-const DEFAULT_GRACE_MINUTES = Number.isFinite(graceMinutesEnv) && graceMinutesEnv > 0 ? graceMinutesEnv : 30;
 
 const sanitizeOptional = (value: string | undefined) => {
   const trimmed = value?.trim();
@@ -113,15 +109,8 @@ export async function deleteWishlistItem(id: string) {
   await deleteDoc(doc(wishlistCollection, id));
 }
 
-const isClaimStillValid = (expiresAt: Timestamp | null | undefined) => {
-  if (!expiresAt) return true;
-  const date = expiresAt.toDate();
-  return isValid(date) && date.getTime() > Date.now();
-};
-
-export async function claimWishlistItem(options: { id: string; token: string; graceMinutes?: number }) {
-  const { id, token, graceMinutes } = options;
-  const effectiveGrace = Math.max(1, Math.floor(graceMinutes ?? DEFAULT_GRACE_MINUTES));
+export async function claimWishlistItem(options: { id: string; token: string }) {
+  const { id, token } = options;
   const ref = doc(wishlistCollection, id);
 
   await runTransaction(db, async (transaction) => {
@@ -131,19 +120,16 @@ export async function claimWishlistItem(options: { id: string; token: string; gr
     }
 
     const data = snap.data() as DocumentData;
-    const expiresAt = (data.claimExpiresAt as Timestamp | null | undefined) ?? null;
-    const alreadyClaimed = Boolean(data.isClaimed) && data.claimToken && isClaimStillValid(expiresAt);
+    const alreadyClaimed = Boolean(data.isClaimed) && Boolean(data.claimToken);
 
     if (alreadyClaimed && data.claimToken !== token) {
       throw new Error('wishlist/already-claimed');
     }
 
-    const newExpiresAt = Timestamp.fromDate(addMinutes(new Date(), effectiveGrace));
-
     transaction.update(ref, {
       isClaimed: true,
       claimToken: token,
-      claimExpiresAt: newExpiresAt,
+      claimExpiresAt: null,
       updatedAt: serverTimestamp(),
       lastClaimedAt: serverTimestamp(),
     });
@@ -171,10 +157,7 @@ export async function releaseWishlistItem(options: { id: string; token?: string;
       return;
     }
 
-    const expiresAt = (data.claimExpiresAt as Timestamp | null | undefined) ?? null;
-    const claimExpired = expiresAt ? !isClaimStillValid(expiresAt) : false;
-
-    if (!force && !claimExpired && data.claimToken && data.claimToken !== token) {
+    if (!force && data.claimToken && data.claimToken !== token) {
       throw new Error('wishlist/not-allowed');
     }
 

@@ -131,7 +131,7 @@ Basic validation uses zod. A hidden honeypot field reduces spam.
 ## Wishlist
 
 - `/wishlist` shows every document in `wishlistItems`.
-- Guests can reserve an item; the reservation automatically expires after `VITE_WISHLIST_GRACE_MINUTES` minutes.
+- Guests can reserve an item; the reservation stays active until they release it (or an admin does).
 - Share buttons use the Web Share API when available or copy a link fallback. Override the base with `VITE_WISHLIST_SHARE_BASE_URL` if the site is proxied.
 
 ### Admin view

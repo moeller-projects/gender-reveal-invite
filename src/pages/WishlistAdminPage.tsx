@@ -415,7 +415,6 @@ export default function WishlistAdminPage() {
         <div className="space-y-4">
           {sortedItems.map((item) => {
             const isEditing = editingId === item.id;
-            const expiresAt = item.claimExpiresAt ? item.claimExpiresAt.toDate() : null;
             return (
               <div key={item.id} className="rounded-lg border bg-white p-5">
                 {!isEditing ? (
@@ -447,11 +446,6 @@ export default function WishlistAdminPage() {
                           <div className="mt-3">
                             <img src={item.imageUrl} alt="" className="h-32 w-32 rounded object-cover" />
                           </div>
-                        )}
-                        {item.isClaimed && expiresAt && (
-                          <p className="mt-2 text-xs text-neutral-500">
-                            {t('wishlistAdmin.status.expires', { date: expiresAt.toLocaleString() })}
-                          </p>
                         )}
                       </div>
                       <div className="flex flex-col gap-2">

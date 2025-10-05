@@ -25,7 +25,7 @@
     "rsvp": "Can you celebrate with us?",
     "rsvp_yes": "We'll be there!",
     "rsvp_no": "We'll cheer from afar",
-    "needsCouch": "Could we save you a couch for the night?",
+    "needsCouch": "We'd love a sleeper couch for the night if possible. We only have limited couches available, but we're happy to help you find nearby accommodations or hotels.",
     "message": "Leave us a note (optional)",
     "submit": "Send my RSVP",
     "submitting": "Sending…",
@@ -60,7 +60,8 @@
     "add_to_calendar": "Add to your calendar",
     "registry": "Gift ideas",
     "open_registry": "Browse our baby wish list",
-    "no_registry": "No registry yet - your presence is the best present."
+    "no_registry": "Your presence is the sweetest gift! If you'd still love to bring something small, peek at our wishlist here:",
+    "our_wishlist": "Our wishlist"
   },
   "wishlist": {
     "title": "Wishlist",

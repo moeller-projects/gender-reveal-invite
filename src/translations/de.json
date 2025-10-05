@@ -1,6 +1,6 @@
 {
-  "title": "Babyparty & Gender-Reveal",
-  "subtitle": "Wir freuen uns darauf, diesen besonderen Moment mit euch zu teilen!",
+  "title": "💕 Baby Reveal Feier",
+  "subtitle": "Ihr Lieben, wir freuen uns riesig und möchten diesen besonderen Moment mit euch teilen!",
   "nav": {
     "home": "Einladung",
     "wishlist": "Wunschliste"
@@ -9,27 +9,27 @@
     "when": "Wann",
     "where": "Wo",
     "details": "Details",
-    "when_value": "Samstag ab 17:00 Uhr - kommt gern etwas früher zum Anstoßen",
-    "where_value": "Bei uns zuhause in Köln - genaue Adresse in der Karte",
-    "details_value": "Gemütliche Gartenfeier mit süßen Leckereien, Spielen und dem großen Reveal bei Sonnenuntergang.",
+    "when_value": "Samstag ab 17:00 Uhr – wer mag, darf gern etwas früher kommen",
+    "where_value": "Bei uns zuhause in Austin – die genaue Adresse findest du auf der Karte",
+    "details_value": "Kommt vorbei, feiert mit uns, lacht, spielt, ratet und genießt einen entspannten Nachmittag voller Freude und Überraschungen.",
     "dresscode": "Dresscode",
-    "dresscode_value": "Pastelltöne oder einfach das, worin du dich wohlfühlst"
+    "dresscode_value": "Blau für Team Junge, Rosa/Pink für Team Mädchen – oder einfach das, worin ihr euch wohlfühlt"
   },
   "form": {
-    "heading": "Sag uns, ob du dabei bist",
-    "name": "Vollständiger Name",
-    "email": "E-Mail",
+    "heading": "Sagt uns bitte Bescheid, ob ihr kommen könnt",
+    "name": "Wie dürfen wir dich eintragen?",
+    "email": "E-Mail-Adresse",
     "phone": "Telefonnummer",
-    "totalPersons": "Wie viele kommen mit?",
-    "dietary": "Allergien oder besondere Wünsche",
-    "rsvp": "Kannst du mit uns feiern?",
+    "totalPersons": "Mit wie vielen Lieben dürfen wir rechnen?",
+    "dietary": "Wir feiern im Burger-Restaurant (Burger, Pommes & Co.) – gibt es Allergien oder Extra-Wünsche?",
+    "rsvp": "Könnt ihr mit uns feiern?",
     "rsvp_yes": "Auf jeden Fall!",
-    "rsvp_no": "Ich bin im Herzen dabei",
-    "needsCouch": "Ich hätte gern eine Schlafcouch für die Nacht",
-    "message": "Nachricht an uns (optional)",
-    "submit": "Rückmeldung senden",
+    "rsvp_no": "Wir sind im Herzen dabei",
+    "needsCouch": "Wir hätten gern eine Schlafcouch für die Nacht, falls möglich. Wir haben nur wenige Schlafplätze, helfen euch aber gern bei der Suche nach Unterkünften oder Hotels in der Nähe.",
+    "message": "Habt ihr noch eine liebe Nachricht für uns? (optional)",
+    "submit": "Liebe Grüße abschicken",
     "submitting": "Wird gesendet…",
-    "success": "Danke! Wir freuen uns riesig auf dich.",
+    "success": "Danke euch! Wir freuen uns riesig auf die gemeinsame Zeit.",
     "error": "Oh nein, etwas ist schiefgelaufen. Versuch es gleich nochmal.",
     "honeypot": "Dieses Feld leer lassen",
     "prefill_success": "Deine vorherige Rückmeldung wurde geladen."
@@ -40,11 +40,11 @@
     "de": "Deutsch"
   },
   "hero": {
-    "intro": "Liebe Familie, liebe Freund*innen: Feiert mit uns eine gemütliche Babyparty mit Spielen, Lachen und ganz viel Liebe.",
+    "intro": "👩‍❤️‍👨 Wir bekommen ein Baby! Feiert mit uns eine gemütliche Babyparty voller Lachen, Spielen und ganz viel Liebe.",
     "image_alt": "Foto des Paars"
   },
   "countdown": {
-    "title": "Countdown zur Babyparty",
+    "title": "Countdown bis zur Feier",
     "days": "Tage",
     "hours": "Stunden",
     "minutes": "Minuten",
@@ -52,24 +52,25 @@
     "placeholder": "Setze VITE_EVENT_DATETIME in .env, damit der Countdown zum großen Reveal erscheint."
   },
   "map": {
-    "title": "Feieradresse",
+    "title": "Wo wir feiern",
     "route_button": "Route in Maps öffnen"
   },
   "details": {
-    "calendar": "Termin speichern",
+    "calendar": "Termin vormerken",
     "add_to_calendar": "In deinen Kalender übernehmen",
     "registry": "Geschenkideen",
     "open_registry": "Unsere Wunschliste ansehen",
-    "no_registry": "Keine Geschenkliste - eure Anwesenheit ist das schönste Geschenk."
+    "no_registry": "Euer Kommen ist das schönste Geschenk! Falls ihr trotzdem etwas Kleines mitbringen möchtet, schaut gern hier vorbei:",
+    "our_wishlist": "Unsere Wunschliste"
   },
   "wishlist": {
     "title": "Wunschliste",
-    "description": "Such dir etwas aus, das du schenken möchtest, und markiere es als reserviert, damit alle planen können.",
+    "description": "Sucht euch etwas Schönes aus und markiert es als reserviert, damit alle entspannt planen können.",
     "loading": "Wunschliste wird geladen…",
     "empty": "Noch keine Wünsche eingetragen.",
     "available_section": "Noch frei",
     "claimed_section": "Bereits reserviert",
-    "claim": "Ich bringe das mit",
+    "claim": "Das bringe ich mit",
     "claiming": "Reserviere…",
     "claim_success": "Danke! Der Wunsch ist jetzt für dich reserviert.",
     "release": "Reservierung aufheben",
@@ -77,11 +78,11 @@
     "release_success": "Der Wunsch ist wieder frei.",
     "reserved": "Reserviert",
     "reserved_by_you": "Von dir reserviert",
-    "share": "Teilen",
-    "share_copied": "Link kopiert – teile ihn gern weiter!",
+    "share": "Weitererzählen",
+    "share_copied": "Link kopiert – schick ihn gern an eure Lieblingsmenschen!",
     "share_copy": "Teile diesen Link: {{url}}",
     "share_error": "Das Teilen hat nicht geklappt. Versuch es später noch einmal.",
-    "error_generic": "Da ist etwas schiefgelaufen. Bitte aktualisiere die Seite.",
+    "error_generic": "Huch, da ist etwas schiefgelaufen. Bitte aktualisiere die Seite.",
     "error_already_claimed": "Jemand anders war schneller und hat den Wunsch reserviert.",
     "error_no_token": "Deine Reservierung konnte nicht gefunden werden. Reserviere den Wunsch erneut.",
     "error_not_allowed": "Dieser Wunsch ist aktuell von jemand anderem reserviert."

@@ -48,9 +48,9 @@ export default function DetailsSection() {
               )}
               <Link
                 to="/wishlist"
-                className="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-3 py-1 text-xs font-medium text-neutral-700 transition-colors hover:bg-neutral-100"
+                className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium text-neutral-700 underline underline-offset-4 transition-colors hover:bg-neutral-100"
               >
-                {t('nav.wishlist')}
+                {t('details.our_wishlist')}
               </Link>
             </div>
           </div>

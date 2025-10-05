@@ -2,14 +2,14 @@ import { useTranslation } from 'react-i18next';
 
 export default function Hero() {
   const { t } = useTranslation();
-  const img = (import.meta.env.VITE_COUPLE_IMAGE_URL as string | undefined) ?? '/couple-placeholder.svg';
+  const img = (import.meta.env.VITE_COUPLE_IMAGE_URL as string | undefined) ?? '/couple.jpeg';
 
   return (
     <section className="rounded-lg border bg-white p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-center">
       <img
         src={img}
         alt={t('hero.image_alt')}
-        className="w-full sm:w-1/2 max-w-md rounded-lg border object-cover aspect-[4/3]"
+        className="w-full sm:w-1/2 max-w-md rounded-lg border object-cover aspect-[1/1]"
       />
       <div className="flex-1">
         <h1 className="text-3xl font-semibold mb-2">{t('title')}</h1>

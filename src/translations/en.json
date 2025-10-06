@@ -9,6 +9,7 @@
     "when": "When",
     "where": "Where",
     "details": "Details",
+    "when_format": "EEEE, 'the' dd.MM. 'at' HH:mm",
     "when_value": "Saturday at 2:00 PM",
     "where_value": "With us in Berlin - see the map for directions",
     "details_value": "Backyard celebration with sweet bites, lawn games, and the big reveal after sunset.",

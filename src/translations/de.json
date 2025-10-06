@@ -9,6 +9,7 @@
     "when": "Wann",
     "where": "Wo",
     "details": "Details",
+    "when_format": "EEEE, dd.MM. 'ab' HH:mm 'Uhr'",
     "when_value": "Samstag ab 14:00 Uhr",
     "where_value": "Bei uns in Berlin – die genaue Adresse findest du auf der Karte",
     "details_value": "Kommt vorbei, feiert mit uns, lacht, spielt, ratet und genießt einen entspannten Nachmittag voller Freude und Überraschungen.",

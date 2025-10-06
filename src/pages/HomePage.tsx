@@ -17,6 +17,7 @@ export default function HomePage() {
 
       <section className="rounded-lg border bg-white p-6">
         <h2 className="text-xl font-medium mb-4">{t('form.heading')}</h2>
+        <p className="text-sm text-neutral-600 mb-4">{t('form.help')}</p>
         <RSVPForm />
       </section>
     </div>

@@ -201,6 +201,7 @@ export default function WishlistPage() {
       <div className="rounded-lg border bg-white p-6">
         <h2 className="text-2xl font-semibold mb-2">{t('wishlist.title')}</h2>
         <p className="text-neutral-600 text-sm">{t('wishlist.description')}</p>
+        <p className="text-neutral-600 text-sm mt-2">{t('wishlist.help')}</p>
       </div>
 
       {notice && (

@@ -15,7 +15,7 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex justify-end">
+    <div className="flex w-full justify-end">
       <div className="inline-flex overflow-hidden rounded-full border border-neutral-300 bg-white text-xs font-medium shadow-sm">
         {OPTIONS.map(({ code, shortLabel }) => {
           const isActive = i18n.resolvedLanguage === code;

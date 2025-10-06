@@ -17,6 +17,7 @@
   },
   "form": {
     "heading": "Sagt uns bitte Bescheid, ob ihr kommen könnt",
+    "help": "Wenn ihr euch nicht sicher seid, fragt uns gern!",
     "name": "Wie dürfen wir dich eintragen?",
     "email": "E-Mail-Adresse",
     "phone": "Telefonnummer",
@@ -66,6 +67,7 @@
   "wishlist": {
     "title": "Wunschliste",
     "description": "Sucht euch etwas Schönes aus und markiert es als reserviert, damit alle entspannt planen können.",
+    "help": "Wenn ihr euch nicht sicher seid, fragt uns gern!",
     "loading": "Wunschliste wird geladen…",
     "empty": "Noch keine Wünsche eingetragen.",
     "available_section": "Noch frei",

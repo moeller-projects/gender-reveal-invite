@@ -17,6 +17,7 @@
   },
   "form": {
     "heading": "Let us know you're coming",
+    "help": "If you're unsure about anything, just ask us!",
     "name": "Full name",
     "email": "Email",
     "phone": "Phone number",
@@ -66,6 +67,7 @@
   "wishlist": {
     "title": "Wishlist",
     "description": "Pick something you'd love to bring and mark it reserved so everyone can coordinate.",
+    "help": "If you're unsure about anything, just ask us!",
     "loading": "Loading wishlist…",
     "empty": "The wishlist is still empty for now.",
     "available_section": "Still available",

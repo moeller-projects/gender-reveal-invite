@@ -8,12 +8,12 @@ function App() {
   return (
     <div className="min-h-full bg-neutral-50 text-neutral-900">
       <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
-        <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          <div>
+        <header className="mb-6 space-y-4">
+          <LanguageSwitcher />
+          <div className="text-center">
             <h1 className="text-3xl font-semibold">{t('title')}</h1>
             <p className="text-neutral-600">{t('subtitle')}</p>
           </div>
-          <LanguageSwitcher />
         </header>
 
         <main className="space-y-8">

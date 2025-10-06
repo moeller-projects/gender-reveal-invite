@@ -8,6 +8,13 @@ const formatICSDate = (date: Date) =>
     .replace(/[-:]/g, '')
     .replace(/\.\d{3}Z$/, 'Z');
 
+const escapeICSText = (value: string) =>
+  value
+    .replace(/\\/g, '\\\\')
+    .replace(/\n/g, '\\n')
+    .replace(/,/g, '\\,')
+    .replace(/;/g, '\\;');
+
 export default function AddToCalendar() {
   const { t } = useTranslation();
 
@@ -37,9 +44,9 @@ export default function AddToCalendar() {
       `DTSTAMP:${formatICSDate(new Date())}`,
       `DTSTART:${formatICSDate(start)}`,
       `DTEND:${formatICSDate(end)}`,
-      `SUMMARY:${title.replace(/\n/g, ' ')}`,
-      `DESCRIPTION:${desc.replace(/\n/g, ' ')}`,
-      `LOCATION:${address.replace(/\n/g, ' ')}`,
+      `SUMMARY:${escapeICSText(title)}`,
+      `DESCRIPTION:${escapeICSText(desc)}`,
+      `LOCATION:${escapeICSText(address)}`,
       'END:VEVENT',
       'END:VCALENDAR',
       ''

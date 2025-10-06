@@ -43,6 +43,9 @@ export default function WishlistPage() {
   const [tokens, setTokens] = useState<TokenMap>(() => readStoredTokens());
   const [pendingActions, setPendingActions] = useState<Record<string, 'claim' | 'release' | null>>({});
   const [notice, setNotice] = useState<Notice | null>(null);
+  const [statusFilter, setStatusFilter] = useState<'all' | 'available' | 'claimed'>('all');
+  const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [sortOrder, setSortOrder] = useState<'alpha' | 'newest'>('alpha');
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -84,11 +87,66 @@ export default function WishlistPage() {
     });
   }, []);
 
+  const categories = useMemo(() => {
+    const bag = new Set<string>();
+    items.forEach((item) => {
+      const category = item.category?.trim();
+      if (category) {
+        bag.add(category);
+      }
+    });
+    return Array.from(bag).sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+  }, [items]);
+
+  useEffect(() => {
+    if (categoryFilter === 'all') return;
+    if (!categories.includes(categoryFilter)) {
+      setCategoryFilter('all');
+    }
+  }, [categories, categoryFilter]);
+
+  const filteredItems = useMemo(() => {
+    return items.filter((item) => {
+      if (statusFilter === 'available' && item.isClaimed) {
+        return false;
+      }
+      if (statusFilter === 'claimed' && !item.isClaimed) {
+        return false;
+      }
+      if (categoryFilter !== 'all') {
+        const category = item.category?.trim();
+        if (!category || category !== categoryFilter) {
+          return false;
+        }
+      }
+      return true;
+    });
+  }, [items, statusFilter, categoryFilter]);
+
+  const sortedItems = useMemo(() => {
+    const alphaSort = (a: WishlistItem, b: WishlistItem) =>
+      a.title.localeCompare(b.title, undefined, { sensitivity: 'base' });
+
+    const list = [...filteredItems];
+    if (sortOrder === 'alpha') {
+      return list.sort(alphaSort);
+    }
+
+    return list.sort((a, b) => {
+      const aTime = a.createdAt?.toMillis?.() ?? a.updatedAt?.toMillis?.() ?? 0;
+      const bTime = b.createdAt?.toMillis?.() ?? b.updatedAt?.toMillis?.() ?? 0;
+      if (aTime === bTime) {
+        return alphaSort(a, b);
+      }
+      return bTime - aTime;
+    });
+  }, [filteredItems, sortOrder]);
+
   const partitioned = useMemo(() => {
     const available: WishlistItem[] = [];
     const claimed: WishlistItem[] = [];
 
-    items.forEach((item) => {
+    sortedItems.forEach((item) => {
       if (item.isClaimed) {
         claimed.push(item);
       } else {
@@ -96,14 +154,8 @@ export default function WishlistPage() {
       }
     });
 
-    const sortByTitle = (a: WishlistItem, b: WishlistItem) =>
-      a.title.localeCompare(b.title, undefined, { sensitivity: 'base' });
-
-    available.sort(sortByTitle);
-    claimed.sort(sortByTitle);
-
     return { available, claimed };
-  }, [items]);
+  }, [sortedItems]);
 
   const showNotice = useCallback((type: Notice['type'], message: string) => {
     setNotice({ type, message });
@@ -202,6 +254,59 @@ export default function WishlistPage() {
         <h2 className="text-2xl font-semibold mb-2">{t('wishlist.title')}</h2>
         <p className="text-neutral-600 text-sm">{t('wishlist.description')}</p>
         <p className="text-neutral-600 text-sm mt-2">{t('wishlist.help')}</p>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-wide text-neutral-500 mb-1" htmlFor="wishlist-status-filter">
+              {t('wishlist.filters.status_label')}
+            </label>
+            <select
+              id="wishlist-status-filter"
+              value={statusFilter}
+              onChange={(event) => setStatusFilter(event.target.value as 'all' | 'available' | 'claimed')}
+              className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-sm"
+            >
+              <option value="all">{t('wishlist.filters.status.all')}</option>
+              <option value="available">{t('wishlist.filters.status.available')}</option>
+              <option value="claimed">{t('wishlist.filters.status.claimed')}</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-wide text-neutral-500 mb-1" htmlFor="wishlist-category-filter">
+              {t('wishlist.filters.category_label')}
+            </label>
+            <select
+              id="wishlist-category-filter"
+              value={categoryFilter}
+              onChange={(event) => setCategoryFilter(event.target.value)}
+              className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-sm"
+              disabled={categories.length === 0}
+            >
+              <option value="all">{t('wishlist.filters.category_all')}</option>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+            {categories.length === 0 && (
+              <p className="mt-1 text-xs text-neutral-500">{t('wishlist.filters.category_empty')}</p>
+            )}
+          </div>
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-wide text-neutral-500 mb-1" htmlFor="wishlist-sort-order">
+              {t('wishlist.filters.sort_label')}
+            </label>
+            <select
+              id="wishlist-sort-order"
+              value={sortOrder}
+              onChange={(event) => setSortOrder(event.target.value as 'alpha' | 'newest')}
+              className="w-full rounded border border-neutral-300 bg-white px-3 py-2 text-sm"
+            >
+              <option value="alpha">{t('wishlist.filters.sort.alpha')}</option>
+              <option value="newest">{t('wishlist.filters.sort.newest')}</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       {notice && (
@@ -230,7 +335,13 @@ export default function WishlistPage() {
         </div>
       )}
 
-      {!loading && !error && partitioned.available.length === 0 && partitioned.claimed.length === 0 && (
+      {!loading && !error && items.length > 0 && sortedItems.length === 0 && (
+        <div className="rounded-md border bg-white px-4 py-6 text-center text-neutral-600">
+          {t('wishlist.filtered_empty')}
+        </div>
+      )}
+
+      {!loading && !error && items.length === 0 && (
         <div className="rounded-md border bg-white px-4 py-6 text-center text-neutral-600">
           {t('wishlist.empty')}
         </div>

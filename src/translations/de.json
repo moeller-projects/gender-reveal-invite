@@ -66,10 +66,27 @@
   },
   "wishlist": {
     "title": "Wunschliste",
-    "description": "Sucht euch etwas Schönes aus und markiert es als reserviert, damit alle entspannt planen können.",
+    "description": "Sucht euch etwas Schönes aus und markiert es als reserviert, damit alle entspannt planen können. Falls ihr nichts Passendes findet, freuen wir uns genauso über einen Gutschein (z. B. DM, Rossmann, Amazon) oder einen kleinen Beitrag in die Babykasse.",
     "help": "Wenn ihr euch nicht sicher seid, fragt uns gern!",
+    "filters": {
+      "status_label": "Anzeigen",
+      "status": {
+        "all": "Alle Wünsche",
+        "available": "Nur freie Wünsche",
+        "claimed": "Nur reservierte Wünsche"
+      },
+      "category_label": "Kategorie",
+      "category_all": "Alle Kategorien",
+      "category_empty": "Noch keine Kategorien",
+      "sort_label": "Sortieren nach",
+      "sort": {
+        "alpha": "Name A → Z",
+        "newest": "Neueste zuerst"
+      }
+    },
     "loading": "Wunschliste wird geladen…",
     "empty": "Noch keine Wünsche eingetragen.",
+    "filtered_empty": "Keine Wünsche passen zu deinen Filtern.",
     "available_section": "Noch frei",
     "claimed_section": "Bereits reserviert",
     "claim": "Das bringe ich mit",

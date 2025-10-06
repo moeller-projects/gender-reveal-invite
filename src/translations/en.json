@@ -66,10 +66,27 @@
   },
   "wishlist": {
     "title": "Wishlist",
-    "description": "Pick something you'd love to bring and mark it reserved so everyone can coordinate.",
+    "description": "Pick something you'd love to bring and mark it reserved so everyone can coordinate. If nothing feels right, gift cards (DM, Rossmann, Amazon) or a little baby-fund contribution are always welcome.",
     "help": "If you're unsure about anything, just ask us!",
+    "filters": {
+      "status_label": "Show",
+      "status": {
+        "all": "All items",
+        "available": "Only available",
+        "claimed": "Only reserved"
+      },
+      "category_label": "Category",
+      "category_all": "All categories",
+      "category_empty": "No categories yet",
+      "sort_label": "Sort by",
+      "sort": {
+        "alpha": "Name A → Z",
+        "newest": "Newest first"
+      }
+    },
     "loading": "Loading wishlist…",
     "empty": "The wishlist is still empty for now.",
+    "filtered_empty": "No items match your filters.",
     "available_section": "Still available",
     "claimed_section": "Already reserved",
     "claim": "Reserve this gift",
